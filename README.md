@@ -1,8 +1,10 @@
-📝 Simple To-Do App with Authentication
+**📝 Simple To-Do App with Authentication**
 
 🌐 Live Demo
 
 🔗 https://todo-passport-app.vercel.app/
+
+------------------------------------------------
 
 🌟 Features
 
@@ -15,6 +17,8 @@
 🔄 Logout functionality
 
 🎨 Simple UI using EJS / HTML forms
+
+------------------------------------
 
 🛠️ Technologies Used
 
@@ -29,4 +33,5 @@ Passport.js (Local Strategy) – authentication middleware
 Express-session – session management
 
 EJS / HTML – frontend templating
+
 
