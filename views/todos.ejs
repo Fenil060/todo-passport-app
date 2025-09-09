@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Todos</title>
+  <style>
+    /* General body style */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #45a049;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 10px;
+      margin-bottom: 5px;
+      background: #f9f9f9;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li s {
+      color: gray;
+    }
+
+    li form button {
+      margin-left: 5px;
+      padding: 5px 10px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <% if (currentUser) { %>
+      Logged in as: <strong><%= currentUser.username %></strong>
+      <a href="/logout" style="color:white; margin-left:20px;">Logout</a>
+    <% } %>
+  </header>
+
+  <div class="container">
+    <h2>My Todos</h2>
+
+    <form method="POST" action="/todos">
+      <input name="text" placeholder="New Todo" required />
+      <button>Add</button>
+    </form>
+
+    <ul>
+      <% todos.forEach(todo => { %>
+        <li>
+          <% if (todo.completed) { %>
+            <s><%= todo.text %></s>
+          <% } else { %>
+            <%= todo.text %>
+            <form method="POST" action="/todos/<%= todo._id %>/complete" style="display:inline">
+              <button>Complete</button>
+            </form>
+          <% } %>
+          <form method="POST" action="/todos/<%= todo._id %>/delete" style="display:inline">
+            <button>Delete</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>
+
